@@ -37,3 +37,9 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.gravatar-image {
+  width: 25px;
+  margin-right: 5px;
+  vertical-align: bottom;
+}
