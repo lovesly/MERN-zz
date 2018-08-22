@@ -58,6 +58,5 @@ export const logoutUser = () => {
         localStorage.removeItem('jwtToken');
         setAuthToken(false);
         dispatch(setCurrentUser({}));
-        
     };
 };

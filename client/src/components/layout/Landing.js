@@ -40,5 +40,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 });
 
-// works without withRouter? why
 export default connect(mapStateToProps)(Landing);
