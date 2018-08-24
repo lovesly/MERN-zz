@@ -9,6 +9,7 @@ const initialState = {
 export default function(state = initialState, action) {
     switch (action.type) {
         case SET_LOGIN_USER:
+            // quick question, why can we use ... here?
             return {
                 ...state,
                 isAuthenticated: !isEmpty(action.payload),

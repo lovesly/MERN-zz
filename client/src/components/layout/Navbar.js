@@ -32,9 +32,13 @@ class Navbar extends Component {
         const authLinks = (
             <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
+                    <Link className="nav-link" to="/dashboard">Dashboard</Link>
+                </li>
+                <li className="nav-item">
                     <a href="" onClick={ this.onLogoutClick.bind(this) } className="nav-link">
+                        {/* wierd verticle-align issue */}
                         <img src={ user.avatar } alt="" className="gravatar-image" title="gravatar image"/>
-                        Logout out
+                        <span>Logout out</span>
                     </a>
                 </li>
             </ul>
