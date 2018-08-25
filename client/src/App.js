@@ -18,6 +18,8 @@ import Login from './components/auth/Login';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
+import AddExperience from './components/add-credentials/AddExperience';
+import AddEducation from './components/add-credentials/AddEducation';
 import './App.css';
 
 // check for token 
@@ -52,6 +54,8 @@ class App extends Component {
                                 <PrivateRoute path="/dashboard" component={ Dashboard } exact={ true } />
                                 <PrivateRoute path="/create-profile" component={ CreateProfile } exact={ true } />
                                 <PrivateRoute path="/edit-profile" component={ EditProfile } exact={ true } />
+                                <PrivateRoute path="/add-experience" component={ AddExperience } exact={ true } />
+                                <PrivateRoute path="/add-education" component={ AddEducation } exact={ true } />
                             </Switch>
                         </div>
                         <Footer />
