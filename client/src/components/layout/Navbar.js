@@ -37,7 +37,7 @@ class Navbar extends Component {
                 <li className="nav-item">
                     <a href="" onClick={ this.onLogoutClick.bind(this) } className="nav-link">
                         {/* wierd verticle-align issue */}
-                        <img src={ user.avatar } alt="" className="gravatar-image" title="gravatar image"/>
+                        <img src={ user.avatar } alt="" className="gravatar-image rounded-circle" title="gravatar image"/>
                         <span>Logout out</span>
                     </a>
                 </li>

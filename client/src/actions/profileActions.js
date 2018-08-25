@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { logoutUser } from './authActions';
-import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS, CLEAR_CURRENT_PROFILE } from './types';
+import { GET_PROFILE, PROFILE_LOADING, GET_ERRORS, CLEAR_CURRENT_PROFILE, GET_ALL_PROFILES } from './types';
 
 // Get current profile
 export const getCurrentProfile = () => {
@@ -18,6 +18,27 @@ export const getCurrentProfile = () => {
                 dispatch({
                     type: GET_PROFILE,
                     payload: {},
+                });
+            });
+    };
+};
+
+// Get all profile
+export const getProfiles = () => {
+    return (dispatch) => {
+        dispatch(setProfileLoading());
+        axios.get('/api/profile/all')
+            .then(res => {
+                dispatch({
+                    type: GET_ALL_PROFILES,
+                    payload: res.data,
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch({
+                    type: GET_ALL_PROFILES,
+                    payload: null,
                 });
             });
     };

@@ -20,6 +20,7 @@ import CreateProfile from './components/create-profile/CreateProfile';
 import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
+import Profiles from './components/profiles/Profiles';
 import './App.css';
 
 // check for token 
@@ -50,6 +51,7 @@ class App extends Component {
                         <div className="container">
                             <Route path="/register" component={ Register } exact={ true } />
                             <Route path="/login" component={ Login } exact={ true } />
+                            {/* Does it matter to put all of them inside same switch tag? */}
                             <Switch>
                                 <PrivateRoute path="/dashboard" component={ Dashboard } exact={ true } />
                                 <PrivateRoute path="/create-profile" component={ CreateProfile } exact={ true } />
@@ -57,6 +59,7 @@ class App extends Component {
                                 <PrivateRoute path="/add-experience" component={ AddExperience } exact={ true } />
                                 <PrivateRoute path="/add-education" component={ AddEducation } exact={ true } />
                             </Switch>
+                            <Route path="/profiles" component={ Profiles } exact={ true } />
                         </div>
                         <Footer />
                     </div>
