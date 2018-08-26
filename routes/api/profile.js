@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 const passport = require('passport');
-
+const prependHttp = require('prepend-http');
 // Load Profile Model
 const Profile = require('../../models/Profile');
 // Load User Profile
@@ -97,7 +97,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     profileFields.user = req.user.id;
     if (req.body.handle) profileFields.handle = req.body.handle;
     if (req.body.company) profileFields.company = req.body.company;
-    if (req.body.website) profileFields.website = req.body.website;
+    if (req.body.website) profileFields.website = prependHttp(req.body.website, { https: true });
     if (req.body.location) profileFields.location = req.body.location;
     if (req.body.bio) profileFields.bio = req.body.bio;
     if (req.body.status) profileFields.status = req.body.status;
@@ -106,10 +106,12 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         profileFields.skills = req.body.skills.split(',')
     } 
     profileFields.social = {};
-    if (req.body.youtube) profileFields.social.youtube = req.body.youtube;
-    if (req.body.facebook) profileFields.social.facebook = req.body.facebook;
-    if (req.body.linkedin) profileFields.social.linkedin = req.body.linkedin;
-    if (req.body.instagram) profileFields.social.instagram = req.body.instagram;
+    if (req.body.youtube) profileFields.social.youtube = prependHttp(req.body.youtube, { https: true });
+    if (req.body.facebook) profileFields.social.facebook = prependHttp(req.body.facebook, { https: true });
+    if (req.body.linkedin) profileFields.social.linkedin = prependHttp(req.body.linkedin, { https: true });
+    if (req.body.instagram) profileFields.social.instagram = prependHttp(req.body.instagram, { https: true });
+
+    console.log('test prependHttp: ', profileFields.website);
 
     Profile.findOne({ user: req.user.id })
         .then(profile => {

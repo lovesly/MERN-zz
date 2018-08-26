@@ -23,6 +23,26 @@ export const getCurrentProfile = () => {
     };
 };
 
+export const getProfileByHandle = (handle) => {
+    return (dispatch) => {
+        dispatch(setProfileLoading());
+        axios.get(`/api/profile/handle/${handle}`)
+            .then(res => {
+                dispatch({
+                    type: GET_PROFILE,
+                    payload: res.data,
+                });
+            })
+            .catch(err => {
+                console.log(err);
+                dispatch({
+                    type: GET_PROFILE,
+                    payload: null,
+                });
+            });
+    };
+};
+
 // Get all profile
 export const getProfiles = () => {
     return (dispatch) => {
