@@ -23,6 +23,8 @@ import AddEducation from './components/add-credentials/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import NotFound from './components/NotFound/NotFound';
+import Posts from './components/posts/Posts';
+import Post from './components/post/Post';
 import './App.css';
 
 // check for token 
@@ -60,6 +62,8 @@ class App extends Component {
                                 <PrivateRoute path="/edit-profile" component={ EditProfile } exact={ true } />
                                 <PrivateRoute path="/add-experience" component={ AddExperience } exact={ true } />
                                 <PrivateRoute path="/add-education" component={ AddEducation } exact={ true } />
+                                <PrivateRoute path="/feed" component={ Posts } exact={ true } />
+                                <PrivateRoute path="/post/:id" component={ Post } exact={ true } />
                             </Switch>
                             <Route path="/profiles" component={ Profiles } exact={ true } />
                             <Route path="/profile/handle/:handle" component={ Profile } exact={ true } />
