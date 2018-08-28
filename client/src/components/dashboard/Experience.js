@@ -7,7 +7,6 @@ import { deleteExperience } from '../../actions/profileActions';
 class Experience extends Component {
 
     onDelete(id) {
-        console.log();
         this.props.deleteExperience(id);
     }
 

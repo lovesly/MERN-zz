@@ -20,7 +20,6 @@ class ProfileHeader extends Component {
                         </p>
                         { profile.location && <p>{ profile.location }</p> }
                         <p>
-                            { console.log(profile.website) }
                             { profile.website && (
                                 // herf has a prefix of 'localhost:3000/profile/handle'??
                                 <a className="text-white p-2" href={ profile.website } target="_blank">

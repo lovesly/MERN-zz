@@ -40,7 +40,6 @@ class AddExperience extends Component {
     // this one is not getting called after the success submit, 
     // so the errors are not cleared. 
     componentWillReceiveProps(nextProps) {
-        console.log('nextProps', nextProps);
         if (nextProps.errors) {
             this.setState({ errors: nextProps.errors });
         }
@@ -62,8 +61,6 @@ class AddExperience extends Component {
     
     render() {
         const { errors } = this.state;
-        console.log(this.state);
-        console.log(`current errors: ${ errors.company }`);
         return (
             <div className="add-experience">
                 <div className="container">

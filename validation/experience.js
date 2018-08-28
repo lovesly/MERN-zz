@@ -3,7 +3,6 @@ const isEmpty = require('./is-empty');
 
 module.exports = function validateExperienceInput(data) {
     let errors = {};
-    console.log(data);
     data.title = !isEmpty(data.title) ? data.title : '';
     data.company = !isEmpty(data.company) ? data.company : '';
     data.from = !isEmpty(data.from) ? data.from : '';

@@ -43,7 +43,6 @@ class Register extends Component {
             password2: this.state.password2,
         };
         // should add front-end validation
-        console.log('client', this.props.history);
         this.props.startRegisterUser(newUser, this.props.history);
     }
 

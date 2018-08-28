@@ -111,8 +111,6 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     if (req.body.linkedin) profileFields.social.linkedin = prependHttp(req.body.linkedin, { https: true });
     if (req.body.instagram) profileFields.social.instagram = prependHttp(req.body.instagram, { https: true });
 
-    console.log('test prependHttp: ', profileFields.website);
-
     Profile.findOne({ user: req.user.id })
         .then(profile => {
             if (profile) {

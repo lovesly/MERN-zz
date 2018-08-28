@@ -8,7 +8,6 @@ import { deleteEducation } from '../../actions/profileActions';
 class Education extends Component {
 
     onDelete(id) {
-        console.log();
         this.props.deleteEducation(id);
     }
 
