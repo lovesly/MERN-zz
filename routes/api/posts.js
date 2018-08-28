@@ -103,7 +103,7 @@ router.post('/like/:id', passport.authenticate('jwt', { session: false }), (req,
                         post.likes.push({
                             user: req.user.id
                         });
-                        post.save().then(() => res.json({ post }));
+                        post.save().then(() => res.json(post));
                     })
                     .catch(err => res.status(404).json({ err }));
             }
@@ -130,7 +130,7 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
                         const index = post.likes.findIndex(el => el.user.toString() === req.user.id);
                         if (index !== -1) {
                             post.likes.splice(index, 1);
-                            post.save().then(() => res.json({ post }));
+                            post.save().then(() => res.json(post));
                         } else {
                             // haven't liked the post
                             errors.notliked = 'You haven\'t liked this post'
@@ -168,7 +168,7 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
                             user: req.user.id,
                         };
                         post.comments.push(newComment);
-                        return post.save().then(() => res.json({ post }));
+                        return post.save().then(() => res.json(post));
                     })
                     .catch(err => res.status(404).json({ err }));
             }
@@ -201,7 +201,7 @@ router.delete('/:id/comment/:comment_id', passport.authenticate('jwt', { session
                             // toDo owner of the post should be able to delete comments.
                             // valid comment. 
                             post.comments.splice(commentIndex, 1);
-                            post.save().then(() => res.json({ post }));
+                            post.save().then(() => res.json(post));
                         } else {
                             errors.comment = 'User not authorized'
                             return res.status(401).json({ errors });

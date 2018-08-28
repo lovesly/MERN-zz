@@ -1,18 +1,67 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Spinner from '../common/Spinner';
+import { getPost, clearPost } from '../../actions/postActions';
+import PostItem from '../posts/PostItem';
+import CommentForm from '../post/CommentForm';
+import CommentFeed from './CommentFeed';
+
 
 class Post extends Component {
+    componentDidMount() {
+        if (this.props.match.params.id) {
+            this.props.getPost(this.props.match.params.id);
+        }
+    }
+
+    componentWillUnmount() {
+        // clear the post
+        // can we call dispatch here ?
+        this.props.clearPost();
+    }
+
     render() {
+        // problem here is, if post is already in the state
+        // it's going to render the previous post then render the new one.
+        const { post, loading } = this.props.post;
+        let postContent;
+        if (post === null || loading) {
+            postContent = <Spinner />;
+        } else {
+            postContent = (
+                <div>
+                    <PostItem post={ post } showActions={ false } />
+                    <CommentForm postId={ post._id } />
+                    <CommentFeed postId={ post._id } comments={ post.comments } />
+                </div>
+            )
+        }
         return (
-            <div>
-                <h1>Post</h1>
+            <div className="feed">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-12">
+                            <Link to="/feed" className="btn btn-light mb-3">Back to feed</Link>
+                            { postContent }
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
 Post.propTypes = {
+    getPost: PropTypes.func.isRequired,
+    clearPost: PropTypes.func.isRequired,
+    post: PropTypes.object.isRequired,
+}
 
-};
+// post state (contains posts, post, loading)
+const mapStateToProps = (state) => ({
+    post: state.post
+});
 
-export default Post;
+export default connect(mapStateToProps, { getPost, clearPost })(Post);
