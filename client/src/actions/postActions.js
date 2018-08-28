@@ -63,7 +63,7 @@ export const getPost = (id) => {
 export const deletePost = (id) => {
     return dispatch => {
         dispatch(setPostLoading());
-        axios.delete(`/api/posts/unlike/${id}`)
+        axios.delete(`/api/posts/${id}`)
             .then(res => {
                 dispatch({
                     type: DELETE_POST,
